@@ -1,0 +1,11 @@
+---
+- name: Create directory for key bindings
+  ansible.builtin.file:
+    path: "~/Library/KeyBindings"
+    state: directory
+  
+- name: Install Key Bindings file
+  ansible.builtin.copy:
+    src: DefaultKeyBinding.dict
+    dest: "~/Library/KeyBindings/"  
+

@@ -1,0 +1,15 @@
+---
+- name: Check if Homebrew already installed
+  stat:
+    path: /opt/homebrew/bin/brew
+  register: brew    
+
+- name: Install Homebrew
+  shell: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  when: not brew.stat.exists  
+
+- name: Install Homebrew packages
+  community.general.homebrew:
+    name: "{{ item }}"
+    state: latest
+  with_items: "{{ brew_packages }}"
