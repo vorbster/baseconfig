@@ -1,6 +1,15 @@
+# Homebrew
+
+brew_packages: 
+  - wget
+  - node
+  - lua  
+  - octave  
+
+# MacPorts
+
 macports_url: https://github.com/macports/macports-base/releases/download/v2.8.0/MacPorts-2.8.0-13-Ventura.pkg
 macports_filename: "{{ macports_url | basename }}" 
 macports_ports:
   - mc
   - elinks  
-
