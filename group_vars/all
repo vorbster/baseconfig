@@ -5,6 +5,7 @@ brew_packages:
   - node
   - lua  
   - octave  
+  - tmux
 
 # MacPorts
 
@@ -13,3 +14,9 @@ macports_filename: "{{ macports_url | basename }}"
 macports_ports:
   - mc
   - elinks  
+  - neovim
+  - tree
+
+ssh_public_key: "{{ lookup('file', 'ssh_public_key')}}"
+ssh_private_key: "{{ lookup('file', 'ssh_private_key')}}"
+nvim_git: "git@gitlab.com:vorbster/nvim-config.git"  

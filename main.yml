@@ -3,10 +3,10 @@
   hosts: all
   become: no
   become_user: root
-  connection: local  
+  connection: local
 
   roles:
     - { name: MacPorts, tags: MacPorts } # Install Mac Ports and some packages
     - { name: Homebrew, tags: Homebrew } # Install Homebrew and some packages
-    - { name: MacOS, tags: MacOS } # Configure the OS 
-
+    - { name: MacOS, tags: MacOS } # Configure the OS
+    - { name: NeoVim, tags: NeoVim } # Configure NeoVim and tmux
