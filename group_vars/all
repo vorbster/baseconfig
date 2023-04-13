@@ -20,3 +20,9 @@ macports_ports:
 ssh_public_key: "{{ lookup('file', 'ssh_public_key')}}"
 ssh_private_key: "{{ lookup('file', 'ssh_private_key')}}"
 nvim_git: "git@gitlab.com:vorbster/nvim-config.git"  
+tmux_git_repos:
+ - "https://github.com/tmux-plugins/tmux-continuum.git"
+ - "https://github.com/tmux-plugins/tmux-resurrect.git"
+ - "https://github.com/jimeh/tmux-themepack.git"
+ - "https://github.com/tmux-plugins/tpm.git"
+ - "https://github.com/christoomey/vim-tmux-navigator.git"

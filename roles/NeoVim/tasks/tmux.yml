@@ -1,0 +1,17 @@
+- name: Upload tmux config file
+  copy:
+    src: tmux.conf
+    dest: "/Users/{{ ansible_user }}/.tmux.conf"
+    owner: "{{ dest_user }}"
+    group: staff
+
+- name: Create tmux plugins dir
+  file:
+    path: "/Users/{{ ansible_user }}/.tmux/plugins"
+    state: directory
+
+- name: Clone tmux plugins git repositories
+  git:
+    repo: "{{ item }}"
+    dest: "/Users/{{ ansible_user }}/.tmux/plugins/"
+  loop: "{{ tmux_git_repos }}"

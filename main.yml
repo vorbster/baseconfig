@@ -3,7 +3,6 @@
   hosts: all
   become: no
   become_user: root
-  connection: local
 
   roles:
     - { name: MacPorts, tags: MacPorts } # Install Mac Ports and some packages
