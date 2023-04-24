@@ -4,8 +4,11 @@
   become: no
   become_user: root
 
-  roles:
-    - { name: MacPorts, tags: MacPorts } # Install Mac Ports and some packages
-    - { name: Homebrew, tags: Homebrew } # Install Homebrew and some packages
-    - { name: MacOS, tags: MacOS } # Configure the OS
-    - { name: NeoVim, tags: NeoVim } # Configure NeoVim and tmux
+  tasks:
+    - name: Configure Linux hosts
+      ansible.builtin.include_tasks: "linux.yml"
+      when: ansible_system == "Linux"
+
+    - name: Configure MacOS hosts
+      ansible.builtin.include_tasks: "macos.yml"
+      when: ansible_system == "Darwin"

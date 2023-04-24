@@ -1,0 +1,9 @@
+---
+- name: Configure Linux workstation
+  hosts: all
+  become: no
+  become_user: root
+
+  roles:
+    - { name: Homebrew, tags: Homebrew } # Install Homebrew and some packages
+    - { name: NeoVim, tags: NeoVim } # Configure NeoVim and tmux
