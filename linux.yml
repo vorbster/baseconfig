@@ -1,9 +1,11 @@
----
-- name: Configure Linux workstation
-  hosts: all
-  become: no
-  become_user: root
+- name: Run Linux role to configure a Linux workstation
+  ansible.builtin.include_role:
+    name: Linux
 
-  roles:
-    - { name: Homebrew, tags: Homebrew } # Install Homebrew and some packages
-    - { name: NeoVim, tags: NeoVim } # Configure NeoVim and tmux
+- name: Run Homebrew role to install and configure Homebrew
+  ansible.builtin.include_role:
+    name: Homebrew
+
+- name: Run NeoVim role to configure Neovim
+  ansible.builtin.include_role:
+    name: NeoVim

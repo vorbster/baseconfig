@@ -1,0 +1,45 @@
+- name: Check if oh my zsh is already installed
+  ansible.builtin.stat:
+    path: "{{ ansible_user_dir }}/.oh-my-zsh"
+  register: ohmyzsh_dir
+
+- name: Install oh my zsh
+  block:
+    - name: Download oh my zsh installer
+      ansible.builtin.get_url:
+        url: "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh"
+        dest: /tmp/install.sh
+
+    - name: Install Oh my zsh
+      shell: /tmp/install.sh --unattended
+  when: not ohmyzsh_dir.stat.exists
+
+- name: Get zsh location
+  shell: "which zsh"
+  register: zsh_bin
+
+- name: Change default shell to zsh
+  become: true
+  user:
+    name: "{{ ansible_user_id }}"
+    shell: "{{ zsh_bin.stdout }}"
+
+- name: Link a zsh config
+  ansible.builtin.file:
+    src: "{{ ansible_user_dir }}/.config/neovim/zsh/zshrc"
+    dest: "{{ ansible_user_dir }}/.zshrc"
+    state: link
+    force: true
+
+- name: Link a p10k config
+  ansible.builtin.file:
+    src: "{{ ansible_user_dir }}/.config/neovim/zsh/p10k.zsh"
+    dest: "{{ ansible_user_dir }}/.p10k.zsh"
+    state: link
+    force: true
+
+- name: Clone powerlevel10k repo
+  ansible.builtin.git:
+    repo: "https://github.com/romkatv/powerlevel10k.git"
+    dest: "{{ ansible_user_dir }}/.oh-my-zsh/custom/themes/powerlevel10k/"
+    force: yes

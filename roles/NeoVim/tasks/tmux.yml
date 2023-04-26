@@ -1,17 +1,17 @@
-- name: Upload tmux config file
-  copy:
-    src: tmux.conf
-    dest: "/Users/{{ ansible_user }}/.tmux.conf"
-    owner: "{{ dest_user }}"
-    group: staff
+- name: Symlink tmux config file
+  ansible.builtin.file:
+    src: "{{ ansible_user_dir }}/.config/neovim/tmux.conf"
+    dest: "{{ ansible_user_dir }}/.tmux.conf"
+    state: link
 
 - name: Create tmux plugins dir
   file:
-    path: "/Users/{{ ansible_user }}/.tmux/plugins"
+    path: "{{ ansible_user_dir }}/.tmux/plugins"
     state: directory
 
 - name: Clone tmux plugins git repositories
   git:
     repo: "{{ item }}"
-    dest: "/Users/{{ ansible_user }}/.tmux/plugins/"
+    dest: "{{ ansible_user_dir }}/.tmux/plugins/"
+    force: true
   loop: "{{ tmux_git_repos }}"

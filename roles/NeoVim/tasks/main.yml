@@ -1,0 +1,17 @@
+- name: Configure NeoVim
+  ansible.builtin.include_tasks:
+    file: neovim.yml
+  tags:
+    - neovim
+
+- name: Comfigure tmux
+  ansible.builtin.include_tasks:
+    file: tmux.yml
+  tags:
+    - tmux
+
+- name: Comfigure zsh
+  ansible.builtin.include_tasks:
+    file: zsh.yml
+  tags:
+    - zsh
