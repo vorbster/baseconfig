@@ -1,11 +1,11 @@
----
-- name: Configure MacOS workstation
-  hosts: all
-  become: no
-  become_user: root
+- name: Run MacOS role to configure a MacOS workstation
+  ansible.builtin.include_role:
+    name: MacOS
 
-  roles:
-    - { name: MacPorts, tags: MacPorts } # Install Mac Ports and some packages
-    - { name: Homebrew, tags: Homebrew } # Install Homebrew and some packages
-    - { name: MacOS, tags: MacOS } # Configure the OS
-    - { name: NeoVim, tags: NeoVim } # Configure NeoVim and tmux
+- name: Run Homebrew role to install and configure Homebrew
+  ansible.builtin.include_role:
+    name: Homebrew
+
+- name: Run NeoVim role to configure Neovim
+  ansible.builtin.include_role:
+    name: NeoVim

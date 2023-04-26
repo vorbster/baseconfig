@@ -12,6 +12,6 @@
 - name: Clone tmux plugins git repositories
   git:
     repo: "{{ item }}"
-    dest: "{{ ansible_user_dir }}/.tmux/plugins/"
+    dest: "{{ ansible_user_dir }}/.tmux/plugins/{{ item | basename | split('.') | first }}"
     force: true
   loop: "{{ tmux_git_repos }}"

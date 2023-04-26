@@ -7,3 +7,5 @@
   ansible.builtin.git:
     repo: "{{ nvim_git }}"
     dest: "{{ ansible_user_dir }}/.config/nvim"
+    force: yes
+    accept_hostkey: yes
