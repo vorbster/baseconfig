@@ -6,4 +6,4 @@
 - name: Pull neovim config git repo
   ansible.builtin.git:
     repo: "{{ nvim_git }}"
-    dest: "{{ ansible_user_dir }}/.config/neovim"
+    dest: "{{ ansible_user_dir }}/.config/nvim"

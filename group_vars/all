@@ -23,6 +23,7 @@ rpm_packages:
    - ruby
    - zsh
    - util-linux-user
+   - clang
 
 nvim_git: "git@gitlab.com:vorbster/nvim-config.git"  
 tmux_git_repos:

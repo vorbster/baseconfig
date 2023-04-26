@@ -26,14 +26,14 @@
 
 - name: Link a zsh config
   ansible.builtin.file:
-    src: "{{ ansible_user_dir }}/.config/neovim/zsh/zshrc"
+    src: "{{ ansible_user_dir }}/.config/nvim/zsh/zshrc"
     dest: "{{ ansible_user_dir }}/.zshrc"
     state: link
     force: true
 
 - name: Link a p10k config
   ansible.builtin.file:
-    src: "{{ ansible_user_dir }}/.config/neovim/zsh/p10k.zsh"
+    src: "{{ ansible_user_dir }}/.config/nvim/zsh/p10k.zsh"
     dest: "{{ ansible_user_dir }}/.p10k.zsh"
     state: link
     force: true
