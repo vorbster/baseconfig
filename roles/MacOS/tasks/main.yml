@@ -3,9 +3,16 @@
   ansible.builtin.file:
     path: "~/Library/KeyBindings"
     state: directory
-  
+
 - name: Install Key Bindings file
   ansible.builtin.copy:
     src: DefaultKeyBinding.dict
-    dest: "~/Library/KeyBindings/"  
+    dest: "~/Library/KeyBindings/"
 
+- name: Configure defaults
+  community.general.osx_defaults:
+    domain: "{{ item.domain }}"
+    key: "{{ item.key }}"
+    type: "{{ item.type }}"
+    value: "{{ item.value }}"
+    state: present

@@ -1,5 +1,5 @@
 ---
-- name: Configure MacOS right after installation
+- name: Configure my workstation right after installation
   hosts: all
   become: no
   become_user: root
