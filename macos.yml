@@ -9,3 +9,15 @@
 - name: Run NeoVim role to configure Neovim
   ansible.builtin.include_role:
     name: NeoVim
+
+- name: Run tmux role to configure tmux
+  ansible.builtin.include_role:
+    name: tmux    
+
+- name: Run zsh role to configure zsh
+  ansible.builtin.include_role:
+    name: zsh        
+
+- name: Run alacritty role to configure alacritty
+  ansible.builtin.include_role:
+    name: alacritty

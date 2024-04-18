@@ -1,0 +1,27 @@
+- name: Install tmux config file
+  ansible.builtin.copy:
+    src: "/tmp/dotfiles/tmux.conf"
+    dest: "{{ ansible_user_dir }}/.tmux.conf"
+    owner: "{{ MY_USER }}"
+    group: "{{ MY_GROUP }}"
+
+- name: Create tmux plugins dir
+  file:
+    path: "{{ ansible_user_dir }}/.tmux/plugins"
+    state: directory
+    owner: "{{ MY_USER }}"
+    group: "{{ MY_GROUP }}"
+
+- name: Clone tmux plugins git repositories
+  git:
+    repo: "{{ item }}"
+    dest: "{{ ansible_user_dir }}/.tmux/plugins/{{ item | basename | split('.') | first }}"
+    force: true
+  loop: "{{ tmux_git_repos }}"
+
+- name: Upload my dracula theme
+  ansible.builtin.copy: 
+   src: "/tmp/dotfiles/tmux-dracula"
+   dest: "{{ ansible_user_dir }}/.tmux/plugins" 
+   owner: "{{ MY_USER }}"
+   group: "{{ MY_GROUP }}" 

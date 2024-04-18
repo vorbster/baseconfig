@@ -13,7 +13,7 @@
       dest: "/tmp/{{ macports_filename }}"
 
   - name: Install MacPorts pkg 
-    become: yes
+    become: true
     shell: "installer -pkg /tmp/{{ macports_filename }} -target /"
   when: not macports_bin.stat.exists    
 
@@ -21,13 +21,13 @@
 # Will use a loop for now
 
 - name: Install ports
-  become: yes
+  become: true
   community.general.macports:
     selfupdate: yes
     upgrade: yes  
 
 - name: Install Macports ports 
-  become: yes
+  become: true
   community.general.macports:
     name: "{{ item }}"
     state: present

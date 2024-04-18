@@ -1,17 +1,13 @@
-- name: Configure NeoVim
-  ansible.builtin.include_tasks:
-    file: neovim.yml
-  tags:
-    - neovim
+- name: Create config directory
+  ansible.builtin.file:
+    path: "{{ MY_USER }}/.config"
+    state: directory
+    owner: "{{ MY_USER }}"
+    group: "{{ MY_GROUP }}"
 
-- name: Comfigure tmux
-  ansible.builtin.include_tasks:
-    file: tmux.yml
-  tags:
-    - tmux
-
-- name: Comfigure zsh
-  ansible.builtin.include_tasks:
-    file: zsh.yml
-  tags:
-    - zsh
+- name: Sync neovim configs from dotfiles
+  ansible.posix.synchronize:
+   src: "/tmp/dotfiles/nvim"
+   dest: "{{ MY_USER }}/.config/" 
+   owner: "{{ MY_USER }}" 
+   groul: "{{ MY_GROUP }}" 
