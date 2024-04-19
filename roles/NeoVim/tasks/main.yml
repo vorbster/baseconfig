@@ -1,6 +1,6 @@
 - name: Create config directory
   ansible.builtin.file:
-    path: "{{ MY_USER }}/.config"
+    path: "~/.config"
     state: directory
     owner: "{{ MY_USER }}"
     group: "{{ MY_GROUP }}"
@@ -8,6 +8,5 @@
 - name: Sync neovim configs from dotfiles
   ansible.posix.synchronize:
    src: "/tmp/dotfiles/nvim"
-   dest: "{{ MY_USER }}/.config/" 
-   owner: "{{ MY_USER }}" 
-   groul: "{{ MY_GROUP }}" 
+   dest: "~/.config/" 
+   delete: yes 

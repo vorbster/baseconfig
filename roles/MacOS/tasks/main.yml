@@ -20,3 +20,4 @@
     type: "{{ item.type }}"
     value: "{{ item.value }}"
     state: present
+  loop: "{{ macos_defaults }}"  

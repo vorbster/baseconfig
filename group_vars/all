@@ -2,17 +2,20 @@
 
 brew_packages: 
   - neovim
-  - font-hack-nerd-font
   - wget
   - node
   - lua  
   - tmux
   - fzf
   - bat
-  - delta
   - eza
+
+brew_packages_mac:
+  - font-hack-nerd-font
   - epk/epk/font-sf-mono-nerd-font
   - alacritty
+
+brew_packages_linux: []
 
 # MacPorts
 

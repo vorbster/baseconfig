@@ -9,8 +9,16 @@
   environment:
     NONINTERACTIVE: "1"
 
-- name: Install Homebrew packages
+- name: Install Homebrew packages for Linux
   community.general.homebrew:
     name: "{{ item }}"
     state: latest
-  with_items: "{{ brew_packages }}"
+  with_items: "{{ brew_packages + brew_packages_linux }}"
+  when: ansible_system == "Linux"
+
+- name: Install Homebrew packages for Mac
+  community.general.homebrew:
+    name: "{{ item }}"
+    state: latest
+  with_items: "{{ brew_packages + brew_packages_mac }}"
+  when: ansible_system == "Darwin"

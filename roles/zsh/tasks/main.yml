@@ -24,17 +24,15 @@
     name: "{{ MY_USER }}"
     shell: "{{ zsh_bin.stdout }}"
 
-- name: Link a zsh config
+- name: Copy zsh config
   ansible.builtin.copy:
     src: "/tmp/dotfiles/zsh/zshrc"
-    dest: "{{ MY_USER }}/.zshrc"
-    user: "{{ MY_USER }}"
-    group: "{{ MY_GROUP }}"
+    dest: "~/.zshrc"
 
 - name: Link a p10k config
   ansible.builtin.copy:
     src: "/tmp/dotfiles/zsh/p10k.zsh"
-    dest: "{{ MY_USER }}/.p10k.zsh"
+    dest: "~/.p10k.zsh"
 
 - name: Clone powerlevel10k repo
   ansible.builtin.git:

@@ -7,8 +7,8 @@
   tasks:
     - name: Download dotfiles
       ansible.builtin.git:
-       repo: "https://gitlab.com/vorbster/dotfiles.git"
-       dest: /tmp
+       repo: "git@gitlab.com:vorbster/dotfiles.git"
+       dest: /tmp/dotfiles
        
     - name: Configure Linux hosts
       ansible.builtin.include_tasks: "linux.yml"
