@@ -6,7 +6,4 @@
     group: "{{ MY_GROUP }}"
 
 - name: Sync neovim configs from dotfiles
-  ansible.posix.synchronize:
-   src: "/tmp/dotfiles/nvim"
-   dest: "~/.config/" 
-   delete: yes 
+  ansible.builtin.shell: "rsync -avu --delete /tmp/dotfiles/nvim ~/.config"

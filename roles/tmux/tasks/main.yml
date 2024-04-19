@@ -4,16 +4,17 @@
     dest: "{{ ansible_user_dir }}/.tmux.conf"
     owner: "{{ MY_USER }}"
     group: "{{ MY_GROUP }}"
+    remote_src: true
 
 - name: Create tmux plugins dir
-  file:
+  ansible.builtin.file:
     path: "{{ ansible_user_dir }}/.tmux/plugins"
     state: directory
     owner: "{{ MY_USER }}"
     group: "{{ MY_GROUP }}"
 
 - name: Clone tmux plugins git repositories
-  git:
+  ansible.builtin.git:
     repo: "{{ item }}"
     dest: "{{ ansible_user_dir }}/.tmux/plugins/{{ item | basename | split('.') | first }}"
     force: true
@@ -25,3 +26,4 @@
    dest: "{{ ansible_user_dir }}/.tmux/plugins" 
    owner: "{{ MY_USER }}"
    group: "{{ MY_GROUP }}" 
+   remote_src: true  

@@ -6,6 +6,7 @@ brew_packages:
   - node
   - lua  
   - tmux
+  - fd
   - fzf
   - bat
   - eza

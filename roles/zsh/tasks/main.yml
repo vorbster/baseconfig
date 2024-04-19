@@ -28,14 +28,29 @@
   ansible.builtin.copy:
     src: "/tmp/dotfiles/zsh/zshrc"
     dest: "~/.zshrc"
+    remote_src: true
 
 - name: Link a p10k config
   ansible.builtin.copy:
     src: "/tmp/dotfiles/zsh/p10k.zsh"
     dest: "~/.p10k.zsh"
+    remote_src: true
 
 - name: Clone powerlevel10k repo
   ansible.builtin.git:
     repo: "https://github.com/romkatv/powerlevel10k.git"
     dest: "{{ ansible_user_dir }}/.oh-my-zsh/custom/themes/powerlevel10k/"
     force: yes
+
+- name: Clone fzf-git 
+  ansible.builtin.git:
+   repo: "https://github.com/junegunn/fzf-git.sh.git"
+   dest: "/tmp/fzf-git"
+
+- name: Copy fzf-git script to /usr/local/bin
+  ansible.builtin.copy:
+   src: "/tmp/fzf-git/fzf-git.sh"
+   dest: /usr/local/bin/ 
+   remote_src: true
+  become: yes
+
