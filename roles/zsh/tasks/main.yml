@@ -20,7 +20,7 @@
 
 - name: Change default shell to zsh
   become: true
-  user:
+  ansible.builtin.user:
     name: "{{ MY_USER }}"
     shell: "{{ zsh_bin.stdout }}"
 
@@ -40,17 +40,16 @@
   ansible.builtin.git:
     repo: "https://github.com/romkatv/powerlevel10k.git"
     dest: "{{ ansible_user_dir }}/.oh-my-zsh/custom/themes/powerlevel10k/"
-    force: yes
+    force: true
 
-- name: Clone fzf-git 
+- name: Clone fzf-git
   ansible.builtin.git:
-   repo: "https://github.com/junegunn/fzf-git.sh.git"
-   dest: "/tmp/fzf-git"
+    repo: "https://github.com/junegunn/fzf-git.sh.git"
+    dest: "/tmp/fzf-git"
 
 - name: Copy fzf-git script to /usr/local/bin
   ansible.builtin.copy:
-   src: "/tmp/fzf-git/fzf-git.sh"
-   dest: /usr/local/bin/ 
-   remote_src: true
-  become: yes
-
+    src: "/tmp/fzf-git/fzf-git.sh"
+    dest: /usr/local/bin/
+    remote_src: true
+  become: true

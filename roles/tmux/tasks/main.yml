@@ -21,9 +21,9 @@
   loop: "{{ tmux_git_repos }}"
 
 - name: Upload my dracula theme
-  ansible.builtin.copy: 
-   src: "/tmp/dotfiles/tmux-dracula"
-   dest: "{{ ansible_user_dir }}/.tmux/plugins" 
-   owner: "{{ MY_USER }}"
-   group: "{{ MY_GROUP }}" 
-   remote_src: true  
+  ansible.builtin.copy:
+    src: "/tmp/dotfiles/tmux-dracula"
+    dest: "{{ ansible_user_dir }}/.tmux/plugins" 
+    owner: "{{ MY_USER }}"
+    group: "{{ MY_GROUP }}" 
+    remote_src: true  

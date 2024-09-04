@@ -12,8 +12,8 @@
 
 - name: Run tmux role to configure tmux
   ansible.builtin.include_role:
-    name: tmux    
+    name: tmux
 
 - name: Run zsh role to configure zsh
   ansible.builtin.include_role:
-    name: zsh        
+    name: zsh

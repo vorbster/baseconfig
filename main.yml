@@ -1,25 +1,25 @@
 ---
 - name: Configure my workstation right after installation
   hosts: all
-  become: no
+  become: false
   become_user: root
 
   tasks:
     - name: Download dotfiles
       ansible.builtin.git:
-       repo: "git@gitlab.com:vorbster/dotfiles.git"
-       dest: /tmp/dotfiles
-       
+        repo: "git@gitlab.com:vorbster/dotfiles.git"
+        dest: /tmp/dotfiles
+ 
     - name: Configure Linux hosts
       ansible.builtin.include_tasks: "linux.yml"
       when: ansible_system == "Linux"
       vars:
-       MY_USER: "vorb"
-       MY_GROUP: "vorb" 
+        MY_USER: "vorb"
+        MY_GROUP: "vorb" 
 
     - name: Configure MacOS hosts
       ansible.builtin.include_tasks: "macos.yml"
       when: ansible_system == "Darwin"
       vars:
-       MY_USER: "vorb"
-       MY_GROUP: "staff" 
+        MY_USER: "vorb"
+        MY_GROUP: "staff" 
