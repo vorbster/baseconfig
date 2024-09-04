@@ -10,4 +10,4 @@
 - name: Sync config files for alacritty
   ansible.posix.synchronize:
    src: "/tmp/dotfiles/alacritty"
-   dest: "~/.config/alacritty" 
+   dest: "~/.config/" 
