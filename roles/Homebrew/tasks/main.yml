@@ -22,3 +22,17 @@
     state: latest
   with_items: "{{ brew_packages + brew_packages_mac }}"
   when: ansible_system == "Darwin"
+
+- name: Install Homebrew casks for Linux
+  community.general.homebrew_cask:
+    name: "{{ item }}"
+    state: latest
+  with_items: "{{ brew_casks + brew_packages_linux }}"
+  when: ansible_system == "Linux"
+
+- name: Install Homebrew casks for Mac
+  community.general.homebrew_cask:
+    name: "{{ item }}"
+    state: latest
+  with_items: "{{ brew_casks + brew_packages_mac }}"
+  when: ansible_system == "Darwin"

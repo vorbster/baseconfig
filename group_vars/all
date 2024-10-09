@@ -10,17 +10,25 @@ brew_packages:
   - fzf
   - bat
   - eza
+  - ansible-lint
 
-brew_packages_mac:
-  - font-hack-nerd-font
-  - epk/epk/font-sf-mono-nerd-font
-  - alacritty
+brew_packages_mac: []
 
 brew_packages_linux: []
 
+brew_casks:
+  - font-jetbrains-mono-nerd-font
+  - font-droid-sans-mono-nerd-font
+  - font-sauce-code-pro-nerd-font
+
+brew_casks_linux: []
+
+brew_casks_mac:
+  - alacritty
+
 # MacPorts
 
-macports_url: https://github.com/macports/macports-base/releases/download/v2.8.0/MacPorts-2.8.0-13-Ventura.pkg
+macports_url: https://github.com/macports/macports-base/releases/download/v2.10.2/MacPorts-2.10.2-15-Sequoia.pkg
 macports_filename: "{{ macports_url | basename }}" 
 macports_ports:
   - mc
