@@ -4,24 +4,27 @@
   register: ohmyzsh_dir
 
 - name: Install oh my zsh
+  when: not ohmyzsh_dir.stat.exists
   block:
     - name: Download oh my zsh installer
       ansible.builtin.get_url:
         url: "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh"
         dest: /tmp/install.sh
+        mode: "0755"
 
     - name: Install Oh my zsh
-      shell: /tmp/install.sh --unattended
-  when: not ohmyzsh_dir.stat.exists
+      ansible.builtin.command: /tmp/install.sh --unattended
+      changed_when: false
 
 - name: Get zsh location
-  shell: "which zsh"
+  ansible.builtin.command: "which zsh"
+  changed_when: false
   register: zsh_bin
 
 - name: Change default shell to zsh
   become: true
   ansible.builtin.user:
-    name: "{{ MY_USER }}"
+    name: "{{ my_user }}"
     shell: "{{ zsh_bin.stdout }}"
 
 - name: Copy zsh config
@@ -29,27 +32,32 @@
     src: "/tmp/dotfiles/zsh/zshrc"
     dest: "~/.zshrc"
     remote_src: true
+    mode: "0644"
 
 - name: Link a p10k config
   ansible.builtin.copy:
     src: "/tmp/dotfiles/zsh/p10k.zsh"
     dest: "~/.p10k.zsh"
     remote_src: true
+    mode: "0644"
 
 - name: Clone powerlevel10k repo
   ansible.builtin.git:
     repo: "https://github.com/romkatv/powerlevel10k.git"
     dest: "{{ ansible_user_dir }}/.oh-my-zsh/custom/themes/powerlevel10k/"
     force: true
+    version: master
 
 - name: Clone fzf-git
   ansible.builtin.git:
     repo: "https://github.com/junegunn/fzf-git.sh.git"
     dest: "/tmp/fzf-git"
+    version: master
 
 - name: Copy fzf-git script to /usr/local/bin
   ansible.builtin.copy:
     src: "/tmp/fzf-git/fzf-git.sh"
     dest: /usr/local/bin/
     remote_src: true
+    mode: "0755"
   become: true

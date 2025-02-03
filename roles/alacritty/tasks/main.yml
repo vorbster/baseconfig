@@ -3,12 +3,15 @@
   ansible.builtin.copy:
     src: "/tmp/dotfiles/alacritty"
     dest: "~/.config/"
+    owner: "{{ my_user }}"
+    group: "{{ my_group }}"
+    mode: "0644"
     remote_src: true
 
 - name: Create directory for configs
   ansible.builtin.file:
     name: "~/.config/alacritty"
     state: directory
-    owner: "{{ MY_USER }}"
-    group: "{{ MY_GROUP }}"
+    owner: "{{ my_user }}"
+    group: "{{ my_group }}"
     recurse: true

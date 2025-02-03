@@ -2,16 +2,17 @@
   ansible.builtin.copy:
     src: "/tmp/dotfiles/tmux.conf"
     dest: "{{ ansible_user_dir }}/.tmux.conf"
-    owner: "{{ MY_USER }}"
-    group: "{{ MY_GROUP }}"
+    owner: "{{ my_user }}"
+    group: "{{ my_group }}"
+    mode: "0644"
     remote_src: true
 
 - name: Create tmux plugins dir
   ansible.builtin.file:
     path: "{{ ansible_user_dir }}/.tmux/plugins"
     state: directory
-    owner: "{{ MY_USER }}"
-    group: "{{ MY_GROUP }}"
+    owner: "{{ my_user }}"
+    group: "{{ my_group }}"
 
 - name: Clone tmux plugins git repositories
   ansible.builtin.git:
@@ -24,6 +25,6 @@
   ansible.builtin.copy:
     src: "/tmp/dotfiles/tmux-dracula"
     dest: "{{ ansible_user_dir }}/.tmux/plugins" 
-    owner: "{{ MY_USER }}"
-    group: "{{ MY_GROUP }}" 
-    remote_src: true  
+    owner: "{{ my_user }}"
+    group: "{{ my_group }}" 
+    remote_src: true

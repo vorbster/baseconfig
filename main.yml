@@ -9,17 +9,19 @@
       ansible.builtin.git:
         repo: "git@gitlab.com:vorbster/dotfiles.git"
         dest: /tmp/dotfiles
- 
+        force: true
+        version: master
+
     - name: Configure Linux hosts
       ansible.builtin.include_tasks: "linux.yml"
       when: ansible_system == "Linux"
       vars:
-        MY_USER: "vorb"
-        MY_GROUP: "vorb" 
+        my_user: "vorb"
+        my_group: "vorb" 
 
     - name: Configure MacOS hosts
       ansible.builtin.include_tasks: "macos.yml"
       when: ansible_system == "Darwin"
       vars:
-        MY_USER: "vorb"
-        MY_GROUP: "staff" 
+        my_user: "vorb"
+        my_group: "staff" 

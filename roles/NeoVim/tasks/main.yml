@@ -2,8 +2,10 @@
   ansible.builtin.file:
     path: "~/.config"
     state: directory
-    owner: "{{ MY_USER }}"
-    group: "{{ MY_GROUP }}"
+    owner: "{{ my_user }}"
+    group: "{{ my_group }}"
+    mode: "0700"
 
 - name: Sync neovim configs from dotfiles
-  ansible.builtin.shell: "rsync -avu --delete /tmp/dotfiles/nvim ~/.config"
+  ansible.builtin.command: "rsync -avu --delete /tmp/dotfiles/nvim ~/.config"
+  changed_when: false

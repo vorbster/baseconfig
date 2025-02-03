@@ -28,7 +28,7 @@ brew_casks_mac:
 
 # MacPorts
 
-macports_url: https://github.com/macports/macports-base/releases/download/v2.10.2/MacPorts-2.10.2-15-Sequoia.pkg
+macports_url: https://github.com/macports/macports-base/releases/download/v2.10.5/MacPorts-2.10.5-15-Sequoia.pkg
 macports_filename: "{{ macports_url | basename }}" 
 macports_ports:
   - mc

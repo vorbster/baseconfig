@@ -3,15 +3,17 @@
   ansible.builtin.file:
     path: "~/Library/KeyBindings"
     state: directory
-    owner: "{{ MY_USER }}"
-    group: "{{ MY_GROUP }}"
+    owner: "{{ my_user }}"
+    group: "{{ my_group }}"
+    mode: "{{ 0644}}"
 
 - name: Install Key Bindings file
   ansible.builtin.copy:
     src: DefaultKeyBinding.dict
     dest: "~/Library/KeyBindings/"
-    owner: "{{ MY_USER }}"
-    group: "{{ MY_GROUP }}"
+    owner: "{{ my_user }}"
+    group: "{{ my_group }}"
+    mode: "0644"
 
 - name: Configure defaults
   community.general.osx_defaults:
@@ -20,4 +22,4 @@
     type: "{{ item.type }}"
     value: "{{ item.value }}"
     state: present
-  loop: "{{ macos_defaults }}"  
+  loop: "{{ macos_defaults }}"
