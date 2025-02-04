@@ -1,7 +1,7 @@
 ---
 
 - name: Create mc skins directory
-  ansible.builtin.file: 
+  ansible.builtin.file:
    path: "~/.local/share/mc/skins"
    state: directory
    owner: "{{ my_user }}"
@@ -18,16 +18,25 @@
 
 - name: Download mashdark skin
   ansible.builtin.get_url:
-    url: "https://raw.githubusercontent.com/notnout/mashdark/master/mashdark.ini"
-    dest: "~/.local/share/mc/skins/mashdark.ini"
-    mode: "0644"
-    owner: "{{ my_user }}"
-    group: "{{ my_group }}"
+   url: "https://raw.githubusercontent.com/notnout/mashdark/master/mashdark.ini"
+   dest: "~/.local/share/mc/skins/mashdark.ini"
+   mode: "0644"
+   owner: "{{ my_user }}"
+   group: "{{ my_group }}"
 
 - name: Download highlight config file
   ansible.builtin.get_url:
-    url: "https://raw.githubusercontent.com/notnout/mashdark/master/filehighlight.ini"
-    dest: "~/.config/mc/filehighlight.ini"
-    mode: "0644"
-    owner: "{{ my_user }}"
-    group: "{{ my_group }}"
+   url: "https://raw.githubusercontent.com/notnout/mashdark/master/filehighlight.ini"
+   dest: "~/.config/mc/filehighlight.ini"
+   mode: "0644"
+   owner: "{{ my_user }}"
+   group: "{{ my_group }}"
+
+- name: Install config file
+  ansible.builtin.copy:
+   src: "/tmp/dotfiles/mc.ini"
+   dest: "~/.config/mc/ini"
+   owner: "{{ my_user }}"
+   group: "{{ my_group }}"
+   mode: "0644"
+
