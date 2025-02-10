@@ -1,19 +1,15 @@
 ---
 - name: Create directory for key bindings
   ansible.builtin.file:
-    path: "~/Library/KeyBindings"
+    path: "{{ ansible_user_dir }}/Library/KeyBindings"
     state: directory
-    owner: "{{ my_user }}"
-    group: "{{ my_group }}"
-    mode: "{{ 0644}}"
+    mode: '0644'
 
 - name: Install Key Bindings file
   ansible.builtin.copy:
     src: DefaultKeyBinding.dict
-    dest: "~/Library/KeyBindings/"
-    owner: "{{ my_user }}"
-    group: "{{ my_group }}"
-    mode: "0644"
+    dest: "{{ ansible_user_dir }}/Library/KeyBindings/"
+    mode: '0644'
 
 - name: Configure defaults
   community.general.osx_defaults:

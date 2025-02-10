@@ -1,0 +1,15 @@
+---
+driver:
+  name: podman
+platforms:
+  - name: instance
+    image: quay.io/dshcherbakov/molecule-rhel9
+    pre_build_image: true
+provisioner:
+  name: ansible
+  inventory:
+    host_vars:
+      instance:
+        ansible_user: vorb
+  env:
+    ANSIBLE_ROLES_PATH: '../../roles'

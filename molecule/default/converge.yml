@@ -1,0 +1,12 @@
+---
+- name: Converge
+  hosts: all
+  gather_facts: true
+  tasks:
+
+   - name: Execute Linux playbook
+     ansible.builtin.include_tasks: ../../linux.yml
+     vars:
+      my_user: "vorb"
+      my_group: "vorb"
+      my_home: "/home/{{ my_user }}"

@@ -2,8 +2,6 @@
   ansible.builtin.copy:
     src: "/tmp/dotfiles/tmux.conf"
     dest: "{{ ansible_user_dir }}/.tmux.conf"
-    owner: "{{ my_user }}"
-    group: "{{ my_group }}"
     mode: "0644"
     remote_src: true
 
@@ -11,20 +9,18 @@
   ansible.builtin.file:
     path: "{{ ansible_user_dir }}/.tmux/plugins"
     state: directory
-    owner: "{{ my_user }}"
-    group: "{{ my_group }}"
+    mode: '0755'
 
 - name: Clone tmux plugins git repositories
   ansible.builtin.git:
     repo: "{{ item }}"
     dest: "{{ ansible_user_dir }}/.tmux/plugins/{{ item | basename | split('.') | first }}"
     force: true
+    version: "master"
   loop: "{{ tmux_git_repos }}"
 
 - name: Upload my dracula theme
-  ansible.builtin.copy:
+  ansible.builtin.synchronize:
     src: "/tmp/dotfiles/tmux-dracula"
-    dest: "{{ ansible_user_dir }}/.tmux/plugins" 
-    owner: "{{ my_user }}"
-    group: "{{ my_group }}" 
-    remote_src: true
+    dest: "{{ ansible_user_dir }}/.tmux/plugins"
+  delegate_to: "{{ inventory_hostname }}"

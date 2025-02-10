@@ -6,28 +6,33 @@
   register: macports_bin
 
 - name: Download and install MacPorts
+  when: not macports_bin.stat.exists
   block:
     - name: Download MacPorts
       ansible.builtin.get_url:
         url: "{{ macports_url }}"
         dest: "/tmp/{{ macports_filename }}"
+        mode: '0755'
 
-    - name: Install MacPorts pkg 
+    - name: Install MacPorts pkg
       become: true
-      shell: "installer -pkg /tmp/{{ macports_filename }} -target /"
-  when: not macports_bin.stat.exists    
+      become_user: root
+      ansible.builtin.command: "installer -pkg /tmp/{{ macports_filename }} -target /"
+      changed_when: true
 
 # For some reason macports are not getting installed from a list
 # Will use a loop for now
 
 - name: Install ports
   become: true
+  become_user: root
   community.general.macports:
     selfupdate: true
-    upgrade: true  
+    upgrade: true
 
 - name: Install Macports ports
   become: true
+  become_user: root
   community.general.macports:
     name: "{{ item }}"
     state: present

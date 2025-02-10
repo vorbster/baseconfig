@@ -24,7 +24,7 @@
 - name: Change default shell to zsh
   become: true
   ansible.builtin.user:
-    name: "{{ my_user }}"
+    name: "{{ ansible_user_id }}"
     shell: "{{ zsh_bin.stdout }}"
 
 - name: Copy zsh config
@@ -52,7 +52,7 @@
   ansible.builtin.git:
     repo: "https://github.com/junegunn/fzf-git.sh.git"
     dest: "/tmp/fzf-git"
-    version: master
+    version: main
 
 - name: Copy fzf-git script to /usr/local/bin
   ansible.builtin.copy:

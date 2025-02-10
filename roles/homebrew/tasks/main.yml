@@ -5,34 +5,36 @@
     mode: "0777"
 
 - name: Install Homebrew
-  shell: /tmp/install.sh
+  ansible.builtin.command: /tmp/install.sh
   environment:
     NONINTERACTIVE: "1"
+  changed_when: true
 
 - name: Install Homebrew packages for Linux
   community.general.homebrew:
     name: "{{ item }}"
     state: latest
-  with_items: "{{ brew_packages + brew_packages_linux }}"
+  with_items: "{{ homebrew_packages + homebrew_packages_linux }}"
   when: ansible_system == "Linux"
 
 - name: Install Homebrew packages for Mac
   community.general.homebrew:
     name: "{{ item }}"
     state: latest
-  with_items: "{{ brew_packages + brew_packages_mac }}"
+  with_items: "{{ homebrew_packages + homebrew_packages_mac }}"
   when: ansible_system == "Darwin"
 
 - name: Install Homebrew casks for Linux
   community.general.homebrew_cask:
     name: "{{ item }}"
     state: latest
-  with_items: "{{ brew_casks + brew_packages_linux }}"
+    path: "/home/linuxbrew/.linuxbrew/bin"
+  with_items: "{{ homebrew_casks + homebrew_casks_linux }}"
   when: ansible_system == "Linux"
 
 - name: Install Homebrew casks for Mac
   community.general.homebrew_cask:
     name: "{{ item }}"
     state: latest
-  with_items: "{{ brew_casks + brew_packages_mac }}"
+  with_items: "{{ homebrew_casks + homebrew_casks_mac }}"
   when: ansible_system == "Darwin"

@@ -2,16 +2,12 @@
 - name: Sync config files for alacritty
   ansible.builtin.copy:
     src: "/tmp/dotfiles/alacritty"
-    dest: "~/.config/"
-    owner: "{{ my_user }}"
-    group: "{{ my_group }}"
+    dest: "{{ ansible_user_dir }}/.config/"
     mode: "0644"
     remote_src: true
 
 - name: Create directory for configs
   ansible.builtin.file:
-    name: "~/.config/alacritty"
+    name: "{{ ansible_user_dir }}/.config/alacritty"
     state: directory
-    owner: "{{ my_user }}"
-    group: "{{ my_group }}"
     recurse: true

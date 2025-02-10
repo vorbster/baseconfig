@@ -1,0 +1,6 @@
+- name: Download dotfiles
+  ansible.builtin.git:
+    repo: "https://gitlab.com/vorbster/dotfiles.git"
+    dest: /tmp/dotfiles
+    force: true
+    version: main

@@ -1,14 +1,18 @@
 - name: Run Linux role to configure a Linux workstation
   ansible.builtin.include_role:
-    name: Linux
+    name: linux
+
+- name: Clone dotfiles repo
+  ansible.builtin.include_role:
+    name: dotfiles
 
 - name: Run Homebrew role to install and configure Homebrew
   ansible.builtin.include_role:
-    name: Homebrew
+    name: homebrew
 
 - name: Run NeoVim role to configure Neovim
   ansible.builtin.include_role:
-    name: NeoVim
+    name: neovim
 
 - name: Run tmux role to configure tmux
   ansible.builtin.include_role:

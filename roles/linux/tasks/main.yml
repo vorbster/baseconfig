@@ -1,0 +1,6 @@
+- name: Install RPM packages
+  become: true
+  become_user: root
+  ansible.builtin.dnf:
+    name: "{{ linux_rpm_packages }}"
+    state: installed

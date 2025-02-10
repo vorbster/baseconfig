@@ -1,0 +1,8 @@
+linux_rpm_packages:
+   - "@Development tools"
+   - ruby
+   - git
+   - zsh
+   - util-linux-user
+   - clang
+   - rsync

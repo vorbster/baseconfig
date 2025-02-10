@@ -1,0 +1,25 @@
+homebrew_packages:
+  - neovim
+  - wget
+  - node
+  - lua
+  - tmux
+  - fd
+  - fzf
+  - bat
+  - eza
+  - ansible-lint
+
+homebrew_packages_mac: []
+
+homebrew_packages_linux: []
+
+homebrew_casks:
+  - font-jetbrains-mono-nerd-font
+  - font-droid-sans-mono-nerd-font
+  - font-sauce-code-pro-nerd-font
+
+homebrew_casks_linux: []
+
+homebrew_casks_mac:
+  - alacritty

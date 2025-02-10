@@ -1,11 +1,9 @@
 - name: Create config directory
   ansible.builtin.file:
-    path: "~/.config"
+    path: "{{ ansible_user_dir }}/.config"
     state: directory
-    owner: "{{ my_user }}"
-    group: "{{ my_group }}"
     mode: "0700"
 
 - name: Sync neovim configs from dotfiles
-  ansible.builtin.command: "rsync -avu --delete /tmp/dotfiles/nvim ~/.config"
+  ansible.builtin.command: "rsync -avu --delete /tmp/dotfiles/nvim {{ my_home }}/.config"
   changed_when: false

@@ -1,5 +1,0 @@
-- name: Install RPM packages
-  become: true
-  yum:
-    name: "{{ rpm_packages }}"
-    state: installed

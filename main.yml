@@ -1,27 +1,22 @@
 ---
-- name: Configure my workstation right after installation
+- name: Base playbook to configure my Mac or Linux after fresh install
   hosts: all
   become: false
   become_user: root
 
   tasks:
-    - name: Download dotfiles
-      ansible.builtin.git:
-        repo: "git@gitlab.com:vorbster/dotfiles.git"
-        dest: /tmp/dotfiles
-        force: true
-        version: master
-
     - name: Configure Linux hosts
       ansible.builtin.include_tasks: "linux.yml"
       when: ansible_system == "Linux"
       vars:
         my_user: "vorb"
-        my_group: "vorb" 
+        my_group: "vorb"
+        my_home: "/home/{{ my_user }}"
 
     - name: Configure MacOS hosts
       ansible.builtin.include_tasks: "macos.yml"
       when: ansible_system == "Darwin"
       vars:
         my_user: "vorb"
-        my_group: "staff" 
+        my_group: "staff"
+        my_home: "/Users/{{ my_user }}"

@@ -1,0 +1,4 @@
+tmux_git_repos:
+ - "https://github.com/jimeh/tmux-themepack.git"
+ - "https://github.com/tmux-plugins/tpm.git"
+ - "https://github.com/christoomey/vim-tmux-navigator.git"
