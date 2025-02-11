@@ -1,4 +1,5 @@
 ---
+
 - name: Create directory for key bindings
   ansible.builtin.file:
     path: "{{ ansible_user_dir }}/Library/KeyBindings"

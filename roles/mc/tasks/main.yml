@@ -20,6 +20,7 @@
 
 - name: Download highlight config file
   ansible.builtin.get_url:
+   # yamllint disable rule:line-length
    url: "https://raw.githubusercontent.com/notnout/mashdark/master/filehighlight.ini"
    dest: "{{ ansible_user_dir }}/.config/mc/filehighlight.ini"
    mode: "0644"

@@ -1,0 +1,31 @@
+---
+
+- name: Verify if playbook was successful
+  hosts: all
+
+  tasks:
+    - name: Stat homebrew install dir
+      ansible.builtin.stat:
+        path: "/home/linuxbrew/.linuxbrew"
+      register: linuxbrew_dir
+
+    - name: Assert that linuxbrew installation directory is ok
+      ansible.builtin.assert:
+        that:
+          - "linuxbrew_dir.stat.exists"
+          - "linuxbrew_dir.stat.isdir"
+        fail_msg: "Homebrew installation directory doesn't exist"
+        success_msg: "Homebrew installation directory OK"
+
+    - name: Stat neovim config dir
+      ansible.builtin.stat:
+        path: "{{ ansible_user_dir }}/.config/nvim"
+      register: nvim_config_dir
+
+    - name: Assert that neovim configs were synced
+      ansible.builtin.assert:
+        that:
+          - "nvim_config_dir.stat.exists"
+          - "nvim_config_dir.stat.isdir"
+        fail_msg: "Neovim config directory doesn't exist"
+        success_msg: "Neovim config directory OK"

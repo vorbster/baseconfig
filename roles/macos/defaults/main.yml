@@ -1,2 +1,5 @@
+---
+
 macos_defaults:
- - {domain: NSGlobalDomain, key: ApplePressAndHoldEnabled, type: bool, value: false} 
+ # yamllint disable rule:line-length
+ - {domain: NSGlobalDomain, key: ApplePressAndHoldEnabled, type: bool, value: false}

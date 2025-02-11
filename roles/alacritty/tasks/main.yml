@@ -1,4 +1,5 @@
 ---
+
 - name: Sync config files for alacritty
   ansible.builtin.copy:
     src: "/tmp/dotfiles/alacritty"

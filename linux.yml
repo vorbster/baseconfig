@@ -1,3 +1,5 @@
+---
+
 - name: Run Linux role to configure a Linux workstation
   ansible.builtin.include_role:
     name: linux

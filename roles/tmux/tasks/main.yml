@@ -1,3 +1,5 @@
+---
+
 - name: Install tmux config file
   ansible.builtin.copy:
     src: "/tmp/dotfiles/tmux.conf"
@@ -14,13 +16,14 @@
 - name: Clone tmux plugins git repositories
   ansible.builtin.git:
     repo: "{{ item }}"
+    # yamllint disable rule:line-length
     dest: "{{ ansible_user_dir }}/.tmux/plugins/{{ item | basename | split('.') | first }}"
     force: true
     version: "master"
   loop: "{{ tmux_git_repos }}"
 
 - name: Upload my dracula theme
-  ansible.builtin.synchronize:
+  ansible.posix.synchronize:
     src: "/tmp/dotfiles/tmux-dracula"
     dest: "{{ ansible_user_dir }}/.tmux/plugins"
   delegate_to: "{{ inventory_hostname }}"

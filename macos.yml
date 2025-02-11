@@ -1,3 +1,5 @@
+---
+
 - name: Clone dotfiles repo
   ansible.builtin.include_role:
     name: dotfiles

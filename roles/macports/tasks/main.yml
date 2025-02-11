@@ -17,6 +17,7 @@
     - name: Install MacPorts pkg
       become: true
       become_user: root
+      # yamllint disable rule:line-length
       ansible.builtin.command: "installer -pkg /tmp/{{ macports_filename }} -target /"
       changed_when: true
 
