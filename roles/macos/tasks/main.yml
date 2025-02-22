@@ -4,7 +4,7 @@
   ansible.builtin.file:
     path: "{{ ansible_user_dir }}/Library/KeyBindings"
     state: directory
-    mode: '0644'
+    mode: '0755'
 
 - name: Install Key Bindings file
   ansible.builtin.copy:

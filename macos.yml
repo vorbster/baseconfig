@@ -7,27 +7,39 @@
 - name: Run MacOS role to configure a MacOS workstation
   ansible.builtin.include_role:
     name: macos
+  tags: macos
 
 - name: Install and configure macports
   ansible.builtin.include_role:
     name: macports
+  tags: macports
 
 - name: Run Homebrew role to install and configure Homebrew
   ansible.builtin.include_role:
     name: homebrew
+  tags: homebrew
 
 - name: Run NeoVim role to configure Neovim
   ansible.builtin.include_role:
     name: neovim
+  tags: neovim
 
 - name: Run tmux role to configure tmux
   ansible.builtin.include_role:
     name: tmux
+  tags: tmux
 
 - name: Run zsh role to configure zsh
   ansible.builtin.include_role:
     name: zsh
+  tags: zsh
 
 - name: Run alacritty role to configure alacritty
   ansible.builtin.include_role:
     name: alacritty
+  tags: alacritty
+
+- name: Configure mc
+  ansible.builtin.include_role:
+    name: mc
+  tags: mc
