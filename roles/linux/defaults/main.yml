@@ -8,3 +8,4 @@ linux_rpm_packages:
    - util-linux-user
    - clang
    - rsync
+   - tuned

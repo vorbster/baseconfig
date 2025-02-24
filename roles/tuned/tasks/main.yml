@@ -1,0 +1,24 @@
+---
+
+- name: Create a directory for tuned profile
+  become: true
+  ansible.builtin.file:
+   path: /etc/tuned/{{ tuned_profile }}
+   state: directory
+   owner: root
+   group: root
+   mode: '0755'
+  when: tuned_custom_profile is true
+
+- name: Upload tuned profile if custom
+  become: true
+  ansible.builtin.template:
+   src: "{{ tuned_profile }}/tuned.conf.j2"
+   dest: "/etc/tuned/{{ tuned_profile }}/tuned.conf"
+   mode: '0644'
+  when: tuned_custom_profile is true
+
+- name: Active tuned profile
+  become: true
+  ansible.builtin.command: tuned-adm profile "{{ tuned_profile }}"
+  changed_when: false
