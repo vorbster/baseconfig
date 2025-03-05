@@ -10,6 +10,7 @@ homebrew_packages:
   - fzf
   - bat
   - eza
+  - ansible
   - ansible-lint
 
 homebrew_packages_mac: []
