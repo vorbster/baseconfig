@@ -10,6 +10,7 @@ homebrew_packages:
   - fzf
   - bat
   - eza
+  - ripgrep
   - ansible
   - ansible-lint
 
