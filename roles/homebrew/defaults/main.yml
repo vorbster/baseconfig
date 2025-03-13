@@ -13,6 +13,7 @@ homebrew_packages:
   - ripgrep
   - ansible
   - ansible-lint
+  - jesseduffield/lazygit/lazygit
 
 homebrew_packages_mac: []
 
