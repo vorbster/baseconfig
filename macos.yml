@@ -1,14 +1,5 @@
 ---
 
-- name: Clone dotfiles repo
-  ansible.builtin.include_role:
-    name: dotfiles
-
-- name: Run MacOS role to configure a MacOS workstation
-  ansible.builtin.include_role:
-    name: macos
-  tags: macos
-
 - name: Install and configure macports
   ansible.builtin.include_role:
     name: macports
@@ -18,6 +9,15 @@
   ansible.builtin.include_role:
     name: homebrew
   tags: homebrew
+
+- name: Clone dotfiles repo
+  ansible.builtin.include_role:
+    name: dotfiles
+
+- name: Run MacOS role to configure a MacOS workstation
+  ansible.builtin.include_role:
+    name: macos
+  tags: macos
 
 - name: Run tmux role to configure tmux
   ansible.builtin.include_role:

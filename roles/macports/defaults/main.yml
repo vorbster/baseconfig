@@ -8,3 +8,4 @@ macports_ports:
   - mc
   - elinks
   - tree
+  - stow

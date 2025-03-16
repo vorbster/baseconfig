@@ -11,10 +11,12 @@
   ansible.builtin.command: "stow --adopt ."
   args:
     chdir: "{{ ansible_user_dir }}/dotfiles"
-  changed_when: false 
+  environment:
+    PATH: "/opt/local/bin:{{ lookup ('env', 'PATH') }}"
+  changed_when: false
 
 - name: Restore dotfiles git
   ansible.builtin.command: "git restore ."
   args:
     chdir: "{{ ansible_user_dir }}/dotfiles"
-  changed_when: false 
+  changed_when: false
