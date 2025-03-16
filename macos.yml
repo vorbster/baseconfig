@@ -39,6 +39,11 @@
     name: alacritty
   tags: alacritty
 
+- name: Run ghostty role to configure ghostty terminal
+  ansible.builtin.include_role:
+    name: ghostty
+  tags: ghostty
+
 - name: Configure mc
   ansible.builtin.include_role:
     name: mc
