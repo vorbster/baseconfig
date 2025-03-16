@@ -3,6 +3,18 @@
 - name: Download dotfiles
   ansible.builtin.git:
     repo: "https://gitlab.com/vorbster/dotfiles.git"
-    dest: /tmp/dotfiles
+    dest: "{{ ansible_user_dir }}/dotfiles"
     force: true
     version: main
+
+- name: Stow adopt
+  ansible.builtin.command: "stow --adopt ."
+  args:
+    chdir: "{{ ansible_user_dir }}/dotfiles"
+  changed_when: false 
+
+- name: Restore dotfiles git
+  ansible.builtin.command: "git restore ."
+  args:
+    chdir: "{{ ansible_user_dir }}/dotfiles"
+  changed_when: false 

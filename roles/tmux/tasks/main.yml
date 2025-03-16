@@ -1,17 +1,10 @@
 ---
 
-- name: Install tmux config file
-  ansible.builtin.copy:
-    src: "/tmp/dotfiles/tmux.conf"
-    dest: "{{ ansible_user_dir }}/.tmux.conf"
-    mode: "0644"
-    remote_src: true
-
 - name: Create tmux plugins dir
   ansible.builtin.file:
     path: "{{ ansible_user_dir }}/.tmux/plugins"
     state: directory
-    mode: '0755'
+    mode: "0755"
 
 - name: Clone tmux plugins git repositories
   ansible.builtin.git:
@@ -21,9 +14,3 @@
     force: true
     version: "master"
   loop: "{{ tmux_git_repos }}"
-
-- name: Upload my dracula theme
-  ansible.posix.synchronize:
-    src: "/tmp/dotfiles/tmux-dracula"
-    dest: "{{ ansible_user_dir }}/.tmux/plugins"
-  delegate_to: "{{ inventory_hostname }}"

@@ -1,8 +1,0 @@
----
-
-- name: Sync config files for ghostty
-  ansible.builtin.copy:
-    src: "/tmp/dotfiles/ghostty"
-    dest: "{{ ansible_user_dir }}/.config/"
-    mode: "0755"
-    remote_src: true
