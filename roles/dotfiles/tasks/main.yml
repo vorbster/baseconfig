@@ -2,7 +2,7 @@
 
 - name: Download dotfiles
   ansible.builtin.git:
-    repo: "https://gitlab.com/vorbster/dotfiles.git"
+    repo: "git@gitlab.com:vorbster/dotfiles.git"
     dest: "{{ ansible_user_dir }}/dotfiles"
     force: true
     version: main
