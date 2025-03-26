@@ -30,3 +30,5 @@ homebrew_casks_linux: []
 homebrew_casks_mac:
   - alacritty
   - ghostty
+  - sanesidebuttons
+  - gimp
