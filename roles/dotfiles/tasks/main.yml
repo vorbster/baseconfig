@@ -7,16 +7,20 @@
     force: true
     version: main
 
-- name: Stow adopt
-  ansible.builtin.command: "stow --adopt ."
-  args:
-    chdir: "{{ ansible_user_dir }}/dotfiles"
-  environment:
-    PATH: "/opt/local/bin:{{ lookup ('env', 'PATH') }}"
-  changed_when: false
+- name: Make sure .config exists as a directory
+  ansible.builtin.file:
+    path: "{{ ansible_user_dir }}/.config"
+    state: directory
+    mode: '0755'
 
-- name: Restore dotfiles git
-  ansible.builtin.command: "git restore ."
-  args:
-    chdir: "{{ ansible_user_dir }}/dotfiles"
-  changed_when: false
+- name: Make sure .local/share exists
+  ansible.builtin.file:
+    path: "{{ ansible_user_dir }}/.local/share"
+    state: directory
+    mode: '0755'
+
+- name: Pre-create a directory for tmux plugins
+  ansible.builtin.file:
+    path: "{{ ansible_user_dir }}/.tmux/plugins"
+    state: directory
+    mode: '0755'
