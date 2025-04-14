@@ -24,3 +24,9 @@
     path: "{{ ansible_user_dir }}/.tmux/plugins"
     state: directory
     mode: '0755'
+
+- name: Stow dotfiles
+  ansible.builtin.command: stow "{{ item }}"
+  loop: "{{ dotfiles_stow }}"
+  chdir: "{{ ansible_user_dir }}/dotfiles"
+
