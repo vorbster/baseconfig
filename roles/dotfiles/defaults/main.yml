@@ -1,0 +1,8 @@
+---
+
+dotfiles_stow:
+  - neovim
+  - ghostty
+  - mc
+  - zsh
+  - tmux
