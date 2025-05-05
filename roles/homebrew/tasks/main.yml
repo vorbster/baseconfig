@@ -40,3 +40,13 @@
     state: latest
   with_items: "{{ homebrew_casks + homebrew_casks_mac }}"
   when: ansible_system == "Darwin"
+
+# Make sure all apps compiled with homebrew are using the system timezone
+
+- name: Link homebrew localtime to the system one
+  ansible.builtin.file:
+    src: /etc/localtime
+    dest: /home/homebrew/.linuxbrew/etc/localtime
+    type: link
+
+
