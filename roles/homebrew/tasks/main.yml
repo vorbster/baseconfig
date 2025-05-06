@@ -46,7 +46,6 @@
 - name: Link homebrew localtime to the system one
   ansible.builtin.file:
     src: /etc/localtime
-    dest: /home/homebrew/.linuxbrew/etc/localtime
-    type: link
-
+    dest: /home/linuxbrew/.linuxbrew/etc/localtime
+    state: link
 
