@@ -48,4 +48,4 @@
     src: /etc/localtime
     dest: /home/linuxbrew/.linuxbrew/etc/localtime
     state: link
-
+  when: ansible_system == "Linux"
