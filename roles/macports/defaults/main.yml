@@ -1,6 +1,6 @@
 ---
 # yamllint disable rule:line-length
-macports_url: https://github.com/macports/macports-base/releases/download/v2.10.5/MacPorts-2.10.5-15-Sequoia.pkg
+macports_url: https://github.com/macports/macports-base/releases/download/v2.11.5/MacPorts-2.11.5-26-Tahoe.pkg
 
 macports_filename: "{{ macports_url | basename }}"
 
