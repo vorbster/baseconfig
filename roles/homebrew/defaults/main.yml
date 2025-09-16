@@ -22,10 +22,16 @@ homebrew_packages_mac: []
 
 homebrew_packages_linux: []
 
+homebrew_tap_mac:
+  - epk/epk
+
+homebrew_tap_linux: []
+
 homebrew_casks:
   - font-jetbrains-mono-nerd-font
   - font-droid-sans-mono-nerd-font
   - font-sauce-code-pro-nerd-font
+  - font-sf-mono-nerd-font
 
 homebrew_casks_linux: []
 

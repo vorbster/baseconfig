@@ -12,6 +12,16 @@
     NONINTERACTIVE: "1"
   changed_when: true
 
+- name: Tap into homebrew repos on Mac
+  community.general.homebrew_tap:
+   name: "{{ item }}"
+  with_items: "{{ homebrew_tap_mac }}"
+
+- name: Tap into homebrew repos on Linux
+  community.general.homebrew_tap:
+   name: "{{ item }}"
+  with_items: "{{ homebrew_tap_linux }}"
+
 - name: Install Homebrew packages for Linux
   community.general.homebrew:
     name: "{{ item }}"
