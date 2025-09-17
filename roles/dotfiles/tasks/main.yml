@@ -28,8 +28,8 @@
 - name: Stow dotfiles
   ansible.builtin.command: stow "{{ item }}"
   args:
-   chdir: "{{ ansible_user_dir }}/dotfiles"
-  environment: 
-   PATH: "{{ ansible_env.PATH }}:/opt/local/bin"
+    chdir: "{{ ansible_user_dir }}/dotfiles"
+  environment:
+    PATH: "{{ ansible_env.PATH }}:/opt/local/bin"
   loop: "{{ dotfiles_stow }}"
-
+  changed_when: false
