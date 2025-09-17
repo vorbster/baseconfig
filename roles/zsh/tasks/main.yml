@@ -43,6 +43,14 @@
     dest: "/tmp/fzf-git"
     version: main
 
+- name: Make sure /usr/local/bin exists
+  ansible.builtin.file:
+    path: /usr/local/bin
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
 - name: Copy fzf-git script to /usr/local/bin
   ansible.builtin.copy:
     src: "/tmp/fzf-git/fzf-git.sh"
