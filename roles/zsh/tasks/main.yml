@@ -41,15 +41,15 @@
   ansible.builtin.git:
     repo: "https://github.com/junegunn/fzf-git.sh.git"
     dest: "/tmp/fzf-git"
-    version: main
 
 - name: Make sure /usr/local/bin exists
   ansible.builtin.file:
     path: /usr/local/bin
     state: directory
     owner: root
-    group: root
+    group: wheel
     mode: '0755'
+  become: true
 
 - name: Copy fzf-git script to /usr/local/bin
   ansible.builtin.copy:

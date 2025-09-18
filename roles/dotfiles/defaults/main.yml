@@ -6,3 +6,4 @@ dotfiles_stow:
   - mc
   - zsh
   - tmux
+  - git

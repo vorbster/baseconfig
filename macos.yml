@@ -10,6 +10,11 @@
     name: homebrew
   tags: homebrew
 
+- name: Run zsh role to configure zsh
+  ansible.builtin.include_role:
+    name: zsh
+  tags: zsh
+
 - name: Clone dotfiles repo
   ansible.builtin.include_role:
     name: dotfiles

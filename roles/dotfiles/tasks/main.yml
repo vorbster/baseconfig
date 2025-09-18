@@ -5,7 +5,7 @@
     repo: "git@github.com:vorbster/dotfiles.git"
     dest: "{{ ansible_user_dir }}/dotfiles"
     force: true
-    version: main
+    version: master
 
 - name: Make sure .config exists as a directory
   ansible.builtin.file:
@@ -24,6 +24,11 @@
     path: "{{ ansible_user_dir }}/.tmux/plugins"
     state: directory
     mode: '0755'
+
+- name: Make sure zsh config does not exist as a file
+  ansible.builtin.file:
+    path: "{{ ansible_user_dir }}/.zshrc"
+    state: absent
 
 - name: Stow dotfiles
   ansible.builtin.command: stow "{{ item }}"
