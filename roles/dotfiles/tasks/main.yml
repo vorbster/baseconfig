@@ -6,6 +6,8 @@
     dest: "{{ ansible_user_dir }}/dotfiles"
     force: true
     version: master
+  environment:
+    GIT_SSH_COMMAND: "ssh -o StrictHostKeyChecking=no"
 
 - name: Make sure .config exists as a directory
   ansible.builtin.file:

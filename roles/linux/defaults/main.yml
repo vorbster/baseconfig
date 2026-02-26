@@ -9,4 +9,3 @@ linux_rpm_packages:
    - clang
    - rsync
    - tuned
-   - stow

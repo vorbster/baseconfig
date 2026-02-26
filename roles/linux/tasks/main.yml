@@ -1,5 +1,26 @@
 ---
 
+- name: Import gpg key for EPEL
+  become: true
+  become_user: root
+  ansible.builtin.rpm_key:
+    state: present
+    key: https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-10
+
+- name: Install EPEL repo
+  become: true
+  become_user: root
+  ansible.builtin.dnf:
+    name: https://dl.fedoraproject.org/pub/epel/epel-release-latest-10.noarch.rpm
+    state: present
+
+- name: Install stow
+  become: true
+  become_user: root
+  ansible.builtin.dnf:
+    name: https://www.rpmfind.net/linux/epel/9/Everything/x86_64/Packages/s/stow-2.4.0-1.el9.noarch.rpm
+    state: installed
+
 - name: Install RPM packages
   become: true
   become_user: root
