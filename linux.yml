@@ -15,6 +15,11 @@
     name: dotfiles
   tags: dotfiles
 
+- name: Run bash role to configure bash
+  ansible.builtin.include_role:
+    name: bash
+  tags: bash
+
 - name: Run Homebrew role to install and configure Homebrew
   ansible.builtin.include_role:
     name: homebrew

@@ -4,6 +4,7 @@ dotfiles_stow:
   - neovim
   - ghostty
   - mc
-  - zsh
+  # - zsh
   - tmux
   - git
+  - bash

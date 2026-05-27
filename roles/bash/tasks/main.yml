@@ -1,0 +1,57 @@
+- name: Check if Oh My Bash is already installed
+  ansible.builtin.stat:
+    path: "{{ ansible_env.HOME }}/.oh-my-bash"
+  register: omb_folder
+
+- name: Download Oh My Bash installer
+  ansible.builtin.get_url:
+    url: https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh
+    dest: /tmp/install_omb.sh
+    mode: '0755'
+  when: not omb_folder.stat.exists
+
+- name: Run Oh My Bash installer in unattended mode
+  ansible.builtin.command:
+    cmd: bash /tmp/install_omb.sh --unattended
+  when: not omb_folder.stat.exists
+  register: installer_result
+  changed_when: installer_result.rc == 0
+
+- name: Clean up installer script
+  ansible.builtin.file:
+    path: /tmp/install_omb.sh
+    state: absent
+  when: not omb_folder.stat.exists
+
+- name: Clone fzf-git
+  ansible.builtin.git:
+    repo: "https://github.com/junegunn/fzf-git.sh.git"
+    dest: "/tmp/fzf-git"
+    version: main
+
+- name: Copy fzf-git script to /usr/local/bin
+  ansible.builtin.copy:
+    src: "/tmp/fzf-git/fzf-git.sh"
+    dest: /usr/local/bin/
+    remote_src: true
+    mode: "0755"
+  become: true
+
+- name: Change default shell to bash
+  become: true
+  ansible.builtin.user:
+    name: "{{ ansible_user_id }}"
+    shell: "/bin/bash"
+
+- name: Clone fzf-git
+  ansible.builtin.git:
+    repo: "https://github.com/junegunn/fzf-git.sh.git"
+    dest: "/tmp/fzf-git"
+    version: main
+
+- name: Copy fzf-git script to /usr/local/bin
+  ansible.builtin.copy:
+    src: "/tmp/fzf-git/fzf-git.sh"
+    dest: /usr/local/bin/
+    remote_src: true
+    mode: "0755"
