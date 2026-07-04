@@ -1,10 +1,9 @@
 ---
-
-- name: Install and configure macports
-  ansible.builtin.include_role:
-    name: macports
-  tags: macports
-
+# - name: Install and configure macports
+#   ansible.builtin.include_role:
+#     name: macports
+#   tags: macports
+#
 - name: Run Homebrew role to install and configure Homebrew
   ansible.builtin.include_role:
     name: homebrew
