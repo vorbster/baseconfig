@@ -32,9 +32,11 @@
 - name: Install Homebrew packages for Mac
   community.general.homebrew:
     name: "{{ item }}"
-    state: latest
+    state: present
   with_items: "{{ homebrew_packages + homebrew_packages_mac }}"
   when: ansible_system == "Darwin"
+  environment:
+   HOMEBREW_NO_REQUIRE_TAP_TRUST: 1
 
 - name: Install Homebrew casks for Linux
   community.general.homebrew_cask:
