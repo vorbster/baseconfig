@@ -16,10 +16,13 @@ homebrew_packages:
   - ansible-lint
   - lazygit
   - nerdfetch
+  - awscli
   - htop
   - rust
   - stow
   - bash
+  - neomutt
+  - mbsync
 
 homebrew_packages_mac: []
 

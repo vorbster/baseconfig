@@ -8,3 +8,5 @@ dotfiles_stow:
   - tmux
   - git
   - bash
+  - mbsync
+  - neomutt

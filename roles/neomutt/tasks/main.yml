@@ -1,0 +1,17 @@
+---
+- name: Install plist for mbsync
+  ansible.builtin.template:
+    src: org.mbsync.plist.j2
+    dest: ~/Library/LaunchAgents/org.mbsync.plist
+    owner: "{{ ansible_user_id }}"
+    mode: '0600'
+
+- name: Activate the service for mbsync
+  ansible.builtin.shell: "launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/org.mbsync.plist"
+  changed_when: false
+
+- name: Create directory for mail
+  ansible.builtin.file:
+    path: ~/.local/share/mail/yahoo
+    owner: "{{ ansible_user_id }}"
+    mode: "0700"

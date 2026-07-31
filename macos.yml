@@ -32,3 +32,8 @@
   ansible.builtin.include_role:
     name: tmux
   tags: tmux
+
+- name: Run neomutt role to configure neomutt and mbsync
+  ansible.builtin.include_role:
+    name: neomutt
+  tags: neomutt
